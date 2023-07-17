@@ -1,19 +1,21 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Formulario from "../components/Formulario";
 
 function Transferencias() {
 
 
-    const conta_id = useLocation().state.some
-    const[transferencias,setTransferencias] = useState([])
+  const conta_id = useLocation().state.some
+  const[transferencias,setTransferencias] = useState([])
 
   const getTransferencias = async(params) => {
     
     try {
       const url = new URL('http://localhost:8080/transferencias/'+conta_id);
+      
       Object.keys(params).forEach(key => params[key]!=''?url.searchParams.append(key, params[key]):console.log(" "));
+     
+      
       console.log(url)
       fetch(url)
         .then(response => response.json())
